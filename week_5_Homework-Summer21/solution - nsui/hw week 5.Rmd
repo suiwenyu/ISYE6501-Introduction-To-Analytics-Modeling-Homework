@@ -1,0 +1,160 @@
+---
+title: "Homework week 5"
+output:
+  html_document: default
+  pdf_document: default
+date: '2022-06-18'
+---
+
+| **Question 11.1**
+| **Question 11.1.1**
+| **Answer:**
+| 
+| To run a stepwise regression, we need to use the built-in step() function from stats package.
+| First, read the data.
+
+```{r}
+    rm(list = ls())
+    set.seed(19)
+    data <- read.table("C:\\Data\\week 5 data-summer\\data 11.1\\uscrime.txt", 
+                       stringsAsFactors = FALSE, header = TRUE)
+    head(data)
+```
+
+| Next, we need to define two models: one includes intercept term only, the other includes all predictors.
+
+```{r}
+    #define intercept-only model
+    intercept_only <- lm(Crime ~ 1, data=data)
+
+    #define model with all predictors
+    all <- lm(Crime ~ ., data=data)
+```
+
+| Then we can implement stepwise regression. The step() function will use AIC as its variable selection criteria. The info of the final model is displayed below.
+
+```{r}
+    stepwise <- step(intercept_only, direction='both', 
+                     scope=list(lower = intercept_only, upper = formula(all)),
+                     trace=0)
+    
+    #view the steps taken to get the final model
+    stepwise$anova
+    
+    #View the filnal model(scaled data)
+    summary(stepwise)
+```
+
+| **Question 11.1.2**
+| **Answer:**
+| 
+| To execute a LASSO regression, we need to use package glmnet. We also need to scale the first 15 columns in the uscrime dataset and use them as our predictors.
+| To perform LASSO regression, parameter "alpha" in the function glmnet() should be set as 1. Since glmnet() will return more than one models with different lambda values, we would directly use function cv.glmnet() to performs 5-fold cross validation and thus identify the lambda value that produces the smallest mean squared error.
+| The lambda value that generates smallest mean squared error will be used in our final model.
+
+```{r}
+    library(glmnet)
+    
+    #define response variable
+    y <- as.matrix(data$Crime)
+
+    #define matrix of predictor variables (scaled)
+    x <- data.matrix(scale(data[, 1:15]))
+```
+
+```{r}
+    set.seed(19)
+    
+    #3-fold cross validation
+    model <- cv.glmnet(x, y, alpha = 1, nfolds = 5 )
+    
+    # lambda value that generate smallest MSE
+    best_lambda <- model$lambda.min
+    best_lambda
+    plot(model)
+```
+
+| Next we will plug in lambda = 12.21181 to glmnet() to obtain our final model.
+| Here are the coefficients of the final model (based on scaled data):
+
+```{r}
+    final_model <- glmnet(x,y, alpha=1, lambda = best_lambda)
+    
+    #show coefficients of the final model
+    coef(final_model)
+```
+
+| **Question 11.1.3**
+| **Answer:**
+| 
+| To run the elastic net regression, we are going to use the train() function in caret package. The glmnet() function will be invoked by train() function.
+| We use train() to automatically select the best tuning parameters, alpha and lambda . The train() function will tests a range of possible alpha and lambda values, and then select the best values for lambda and alpha that will minimize the model's mean squared error. A 5-fold cross validation approach will be applied in the tuning process.
+| 
+| The best alpha and lambda values and the final model will be displayed as follows:
+
+```{r}
+    library(caret)
+```
+
+```{r}
+    # Scale the data frame
+    data_scaled <- as.data.frame(cbind(scale(data[,1:15]), data[,16]))
+    names(data_scaled)[16] <- "Crime"
+    head(data_scaled)
+    
+    # Build the model
+    set.seed(19)
+    model <- train(Crime ~., 
+                   data = data_scaled, 
+                   method = "glmnet",
+                   trControl = trainControl("cv", number = 5),
+    )
+    # Different models tried in the tuning process
+    model
+    
+    #best parameters
+    model$bestTune
+    best_alpha <- model$bestTune$alpha
+    best_lambda <- model$bestTune$lambda
+    
+    # display the final model with best alpha and lambda (scaled data)
+    final_model <- glmnet(x,y, alpha=best_alpha, lambda = best_lambda)
+    coef(final_model)
+```
+
+| **Question 12.1**
+| **Answer:**
+| 
+| I am working at a management consulting firm. Recently one of our clients is making advertisements on the internet, and their management what to know which platform (twitter or facebook) is the best channel for online advertising.
+| I believe this situation is a very good scenario for A/B testing. Our client can broadcast exactly the same advertisements on both two websites. They can determine which website is better channel by viewing the user click rate.
+
+| 
+| **Question 12.2**
+| **Answer:**
+
+| To find a factorial design of this experiment, we simply need to run function FrF2() with following parameters:
+| 
+| nruns = 16 and nfactors = 10
+| 
+| Here are the results:
+
+```{r}
+    library(FrF2)
+
+    FrF2(nruns = 16, nfactors = 10)
+```
+
+| **Question 13.1**
+| **Answer:**
+| **1. Binomial:** in a plant of manufacturing company, there is a detective rate of finished goods coming down from the assembly line. Assuming the defective rate is constant all the time and independent for each piece of finished goods produced, the number of defective products out of total products produced will follow a binomial distribution.
+| 
+| **2. Geometric:** In the same example as binomial distribution, the number of non-defective products produced before each one defective product is produced will follow a geometric distribution.
+| 
+| **3. Poisson:** The number of calls received per hour at a call center will follow a poisson distribution.
+| 
+| **4.** **Exponential:** In the same example as poisson distribution, the time (minutes) between each call received will follow a exponential distribution.
+| 
+| **5. Weibull:** The mileage that a newly produced car can run before any failure will follow a Weibull distribution. Since the parts of the car can wear out as it runs longer, the likelihood of failure may increases as mileage increases. Therefore, we would expect k\>1.
+
+| 
+| 

@@ -1,0 +1,19 @@
+[RESOURCES]
+personal scanner 4
+personal scanner 2
+personal scanner 3
+personal scanner 1
+Servers
+[VARIABLES]
+Departure Hall.NumberOut
+ID and Boarding pass check.NumberIn
+ID and Boarding pass check.NumberOut
+Personal check Queue 4.NumberIn
+Personal check Queue 4.NumberOut
+Personal check Queue 1.NumberIn
+Personal check Queue 1.NumberOut
+Personal check Queue 3.NumberIn
+Personal check Queue 3.NumberOut
+Personal check Queue 2.NumberIn
+Personal check Queue 2.NumberOut
+Passengers.NumberOut

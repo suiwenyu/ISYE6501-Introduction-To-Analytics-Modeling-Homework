@@ -1,0 +1,288 @@
+---
+title: 'Homework: Week 1'
+output: pdf_document
+---
+
+**Question 2.1**
+
+| **Answer:**
+| 
+| A classification model could probably be used to predict if a candidate will be admitted to Georgia Tech's Online Master of Science in Analytics program. (This idea occurs to me since I plan to apply for this program in the future.)
+| The predictors could include: The candidate's age, highest degree of education, GPA at undergraduate school, undergrad majors, number of years of full-time work experience, etc.
+| 
+| 
+
+**Question 2.2**
+
+**Question 2.2.1**
+
+**Answer:**
+
+First, we read the data for this question from text file and print the first 5 rows.
+
+```{r}
+    #Read data for Question 2.2
+    data = read.delim("C:\\Data\\week 1 data-summer\\data 2.2\\credit_card_data-headers.txt",
+                      header = TRUE)
+    print(data[1:5,])
+
+```
+
+Then we need to apply support vector machine model by running the code provided in homework PDF document. The key to success in this question is to determine the the right order of magnitude for C.
+
+Here we will plug in several different values of C into the model, varying from 1\*10\^(-8) to 1\*10\^8. We will measure the prediction accuracy of this model under different C values by calculating what fraction of the model's predictions match the actual classification.
+
+We will visualize the prediction accuracy under different C values in a line chart.
+
+```{r message=FALSE, warning=FALSE, results='hide'}
+    #Load kernlab library
+    library(kernlab)
+    
+    ksvm_model <- function(kernel_name){
+      #Define C values we want to test
+      cvalues = c()
+       label <- c()
+      for (i in -8:8){
+        cvalues <-append(cvalues, 1 * 10^(i))
+      
+        if (i>=0){label <- append(label, paste("1e+",as.character(i),sep = ''))}
+          else {label <- append(label, paste("1e",as.character(i),sep = ''))}
+      }
+
+      #call ksvm. with differert C values
+      accuracy <- c()
+      kernel <- c()
+    
+      for (c in cvalues){
+        model <- ksvm(as.matrix(data[,1:10]),as.factor(data[,11]),type="C-svc",
+                    kernel=kernel_name, C=c,scaled=TRUE)
+    
+        # calculate a1…am
+        a <- colSums(model@xmatrix[[1]] * model@coef[[1]])
+    
+        # calculate a0
+        a0 <- -model@b
+    
+        # calculate what the model predicts
+        pred <- predict(model,data[,1:10])
+    
+        # calculate what fraction of the model’s predictions match the actual classification and store the results
+        accuracy <- append(accuracy,sum(pred == data[,11]) / nrow(data))
+        kernel <- append(kernel, kernel_name)
+      }
+    
+      results = data.frame("kernel" = kernel, "c" = cvalues, "label" = label, 
+                         "accuracy" = accuracy)
+      return (results)
+    }
+    
+    results = ksvm_model("vanilladot")
+```
+
+```{r}
+    #Visualize results
+    print(results)
+    plot(results[["accuracy"]], cex = 1, col = "red", type = "b")
+    axis(1, at = 1:nrow(results) ,labels=results[["label"]])
+```
+
+The table and graph above shows the prediction accuracy of SVM model under different C values. From the graph, we can see the accuracy of model reaches the highest level (around 86.39%) since C = 1\*10\^(-2) and remains at the same level until C\>1\*10\^(5)
+
+Considering the following formula that we want to minimize:
+
+![](Screenshot%202022-05-21%20153123.png){width="396"}
+
+We know that when C gets larger, the important of margin becomes greater. When C is smaller, the importance of margin gets smaller.
+
+Since we want to avoid the issue of overfitting, we want to maximize the margin of SVM model as much as possible. Therefore, we would choose C=1\*10(5) as our C value, because this is the largest C value we can use while keeping the prediction accuracy at the highest level.
+
+We can plug in C=100000 to the model and get the parameters a0, a1, a2...am as follows:
+
+```{r}
+    model <- ksvm(as.matrix(data[,1:10]),as.factor(data[,11]),type="C-svc",
+                  kernel="vanilladot", C=100000,scaled=TRUE)
+    # calculate a1…am
+    a <- colSums(model@xmatrix[[1]] * model@coef[[1]])
+    # calculate a0
+    a0 <- -model@b
+    # calculate what the model predicts
+    pred <- predict(model,data[,1:10])
+    
+    a
+    a0
+    sum(pred == data[,11]) / nrow(data)
+```
+
+The formula of the classifier will look like the following (variable A1, A2...A15 have been scaled):
+
+| $$
+  W^T\times A + b =0
+  $$
+| Where W and A are vectors and b is a number:
+
+$$
+\begin{aligned}
+W = [-0.004117738, \\
+     -0.086896089, \\
+     0.129715260,  \\
+     -0.083744032, \\
+     0.988381368, \\
+     0.031253888,\\
+     -0.055666972, \\
+     -0.037281856, \\
+     0.021940744, \\
+     0.018521785]\\
+\end{aligned}
+$$
+
+$$
+A = [A1, A2, A3, A8, A9, A10, A11, A12, A14, A15]
+$$
+
+$$
+b = 0.08054451
+$$
+
+**Question 2.2.3**
+
+**Answer:**
+
+I referred to the following post to determine the method of select the right k value: <https://stats.stackexchange.com/a/126138>
+
+The strategy is: we will iterate all the values between k=1 and k=40 (hope 40 is a number big enough) and measure the model's prediction accuracy under different k by calculating what fraction of the model's predictions match the actual classification. Then we will visualize the results and choose the largest k before the model's prediction accuracy noticeably drops.
+
+**Note:** the prediction result returned by kknn will be continuous. We use round() function to convert the results into integers
+
+```{r}
+    library(kknn)
+    
+    data = read.delim("C:\\Data\\week 1 data-summer\\data 2.2\\credit_card_data-headers.txt",
+                      header = TRUE)
+
+    kknn_accuracy <- function(kk){
+      # Make predictions of each data point contained in the dataset
+      predictions <- c()
+      for (i in 1:nrow(data)){
+        #set up train / test dataset 
+        #excluding data point i from training datasets and use it as testing dataset
+        training <- data[-i,]
+        testing <- data[i,]
+        #apply KNN model
+        kknn_model <- kknn(R1~., training, testing, k = kk, scale = TRUE)
+        predictions <- append(predictions,round(fitted(kknn_model)))
+      }
+      accuracy = sum(predictions == data[,11])/nrow(data)
+      return (accuracy)
+    }
+    
+    #Summarize and visualize the prediction accuracy for each k value between 1-40
+    kknn_accu = c()
+    k = c()
+    for (kk in 1:40){
+      accuracy = kknn_accuracy(kk)
+      k = append(k,kk)
+      kknn_accu = append(kknn_accu, accuracy)
+    }
+    kknn_results = data.frame("k"=k, "accuracy"=kknn_accu)
+    print(kknn_results)
+    plot(kknn_results[['accuracy']], cex = 1, col = "red", type = "b")
+```
+
+We can see from the table and graph above that the model reaches the highest level of accuracy (85.32%) at k=12. (Then the accuracy starts to decrease as k increases. Therefore k=12 may be a good value in this model.
+
+**Question 3.1**
+
+**Answer:**
+
+In the last exercise, i think we are essentially already doing the cross validation for the KNN model. We basically created as many validation data sets as the total number of rows in the data frame and did the cross validation.
+
+In this excercise, i am going to adopt the k-fold cross validation approach by randomly dividing the original data set into 5 different sub data sets. We will use the first four data sets for training and cross validation. We are going to use the 5th data set to calculate the prediction accuracy of our model (testing). A KNN model will be adopted in this exercise.
+
+First, we need to divide the data into 5 data set. Here's the approach:
+
+For each of the 654 rows in the original data sets, we need to assign it into one of the 5 sub data sets. We will assign row 1 into data set 1, row 2 into data set 2, row 3 into data set 3, row 4 into data set 4 and row 5 into data set 5. Then we will start over again from assigning row 6 to data set 1... Until we finish assigning all the rows.
+
+```{r}
+    #Load dataset
+    data <- read.delim("C:\\Data\\week 1 data-summer\\data 3.1\\credit_card_data-headers.txt",
+                      header = TRUE)
+    print(data[1:5,])
+```
+
+```{r}
+    #divide data into 5 groups
+    nr <- nrow(data)
+    datasets <- split(data, rep(1:5, each=1, length.out=nr))
+    
+    train_and_val <- datasets[1:4]
+```
+
+Then we will take similar approach as **Question 2.2.3**
+
+We will iterate k=1 to 100 and find out the best value of k using cross validation.
+
+```{r}
+    kknn_cx_val_accuracy <- function(kk){
+      accuracy <- c()
+      for (i in 1:4){
+        #set up train / validation dataset 
+        #excluding data frame i from training datasets and use it as validation dataset
+        validation <- train_and_val[[i]]
+        
+        training_datasets <- train_and_val[-i]
+        training <- data.frame()
+        
+        for (ds in training_datasets){
+          training <- rbind(training,ds)
+        }
+        
+        #apply KNN model
+        kknn_model <- kknn(R1~., training, validation, k = kk, scale = TRUE)
+        pred <- round(fitted(kknn_model))
+        accuracy = append(accuracy,sum(pred == validation[,11])/nrow(validation))
+      }
+      #return the average accuracy of cross validations
+      return (mean(accuracy))
+    }
+    
+    #Summarize and visualize the prediction accuracy for each k value between 1-40
+    kknn_accu = c()
+    k = c()
+    for (kk in 1:100){
+      accuracy = kknn_cx_val_accuracy(kk)
+      k = append(k,kk)
+      kknn_accu = append(kknn_accu, accuracy)
+    }
+    kknn_results = data.frame("k"=k, "accuracy"=kknn_accu)
+    print(kknn_results)
+    plot(kknn_results[['accuracy']], cex = 1, col = "red", type = "b")
+```
+
+From the graph above, we can see that the model reaches its highest level of prediction accuracy (85.50%) at k=37. Therefore we are going to choose k=37 in our KNN model, and test its prediction accuracy using the 5th sub data set. The training data set will be the combined data set generated from the first 4 sub data sets.
+
+```{r}
+    kknn_cx_val_testing <- function(kk){
+      
+        #set up training / testing dataset 
+        testing <- datasets[[5]]
+        training <- data.frame()
+        
+        for (ds in train_and_val){
+          training <- rbind(training,ds)
+        }
+
+        #apply KNN model
+        kknn_model <- kknn(R1~., training, testing, k = kk, scale = TRUE)
+        pred <- round(fitted(kknn_model))
+        accuracy = sum(pred == testing[,11])/nrow(testing)
+
+      return (accuracy)
+    }
+    
+    #calculate the prediction accuracy for each k=37
+    accuracy = kknn_cx_val_testing(37)
+    
+    print(accuracy)
+```
+
+Form the result above, we can see that our KNN model has a prediction accuracy of 80% with k=37.

@@ -1,0 +1,790 @@
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 1 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.5198     .01659     .50892     7.5242       7117    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7117    
+Passenger.WaitTime                          4.4058     (Corr)     .00000     15.171       7117    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7117    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7117    
+Passenger.TotalTime                         5.9257     (Corr)     .56210     17.539       7117    
+Personal check Queue 2.Queue.WaitingTime    1.6829     .39113     .00000     6.9110       1915    
+Personal check Queue 1.Queue.WaitingTime    1.4411     .37969     .00000     6.9273       1757    
+Personal check Queue 3.Queue.WaitingTime    1.5329     (Corr)     .00000     7.2643       1879    
+Personal check Queue 4.Queue.WaitingTime    1.3969     .41767     .00000     6.2500       1570    
+ID and Boarding pass check.Queue.WaitingTi  2.9056     (Corr)     .00000     13.128       7138    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               29.596     (Corr)     .00000     82.000     64.000    
+personal scanner 4.NumberBusy               .81834     (Corr)     .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .81834     (Corr)     .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99690     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99690     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .97815     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .97815     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .92507     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .92507     (Insuf)    .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.8041     .08523     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .95104     .02131     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  2.2407     .53107     .00000     9.0000     4.0000    
+Personal check Queue 1.Queue.NumberInQueue  1.7600     .53254     .00000     9.0000     3.0000    
+Personal check Queue 3.Queue.NumberInQueue  2.0021     .53190     .00000     9.0000     3.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.5241     .52034     .00000     8.0000     3.0000    
+ID and Boarding pass check.Queue.NumberInQ  14.546     (Corr)     .00000     67.000     43.000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7181.0    
+Passenger.NumberOut                         7117.0    
+personal scanner 4.NumberSeized             1570.0    
+personal scanner 4.ScheduledUtilization     .81834    
+personal scanner 2.NumberSeized             1915.0    
+personal scanner 2.ScheduledUtilization     .99690    
+personal scanner 3.NumberSeized             1879.0    
+personal scanner 3.ScheduledUtilization     .97815    
+personal scanner 1.NumberSeized             1757.0    
+personal scanner 1.ScheduledUtilization     .92507    
+Servers.NumberSeized                        7138.0    
+Servers.ScheduledUtilization                .95104    
+System.NumberOut                            7117.0    
+
+Beginning replication 2 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 2 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.4972     .01891     .51478     7.2808       7141    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7141    
+Passenger.WaitTime                          3.2112     (Corr)     .00000     11.009       7141    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7141    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7141    
+Passenger.TotalTime                         4.7085     (Corr)     .61829     13.629       7141    
+Personal check Queue 2.Queue.WaitingTime    1.4863     (Corr)     .00000     6.8969       1913    
+Personal check Queue 1.Queue.WaitingTime    1.2146     .20971     .00000     6.6255       1764    
+Personal check Queue 3.Queue.WaitingTime    1.3199     .17220     .00000     6.4190       1897    
+Personal check Queue 4.Queue.WaitingTime    1.1600     .16496     .00000     6.2307       1571    
+ID and Boarding pass check.Queue.WaitingTi  1.9076     (Corr)     .00000     9.0709       7170    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               23.455     (Corr)     .00000     56.000     38.000    
+personal scanner 4.NumberBusy               .81967     .04250     .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .81967     .04250     .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99652     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99652     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .98626     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .98626     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .92646     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .92646     (Insuf)    .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.7173     .09550     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .92934     .02387     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  1.9842     .22293     .00000     9.0000     5.0000    
+Personal check Queue 1.Queue.NumberInQueue  1.4965     .22169     .00000     9.0000     6.0000    
+Personal check Queue 3.Queue.NumberInQueue  1.7465     .22458     .00000     9.0000     5.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.2738     .22227     .00000     8.0000     5.0000    
+ID and Boarding pass check.Queue.NumberInQ  9.5082     (Corr)     .00000     46.000     9.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7179.0    
+Passenger.NumberOut                         7141.0    
+personal scanner 4.NumberSeized             1571.0    
+personal scanner 4.ScheduledUtilization     .81967    
+personal scanner 2.NumberSeized             1913.0    
+personal scanner 2.ScheduledUtilization     .99652    
+personal scanner 3.NumberSeized             1897.0    
+personal scanner 3.ScheduledUtilization     .98626    
+personal scanner 1.NumberSeized             1764.0    
+personal scanner 1.ScheduledUtilization     .92646    
+Servers.NumberSeized                        7170.0    
+Servers.ScheduledUtilization                .92934    
+System.NumberOut                            7141.0    
+
+Beginning replication 3 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 3 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.4948     .01496     .50640     10.377       7145    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7145    
+Passenger.WaitTime                          4.0830     (Corr)     .00000     12.610       7145    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7145    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7145    
+Passenger.TotalTime                         5.5779     (Corr)     .52755     16.485       7145    
+Personal check Queue 2.Queue.WaitingTime    1.7768     (Corr)     .00000     9.4057       1924    
+Personal check Queue 1.Queue.WaitingTime    1.5475     (Corr)     .00000     8.6549       1775    
+Personal check Queue 3.Queue.WaitingTime    1.6289     (Corr)     .00000     9.1384       1895    
+Personal check Queue 4.Queue.WaitingTime    1.5311     (Corr)     .00000     8.3611       1555    
+ID and Boarding pass check.Queue.WaitingTi  2.4537     (Corr)     .00000     10.676       7161    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               27.721     (Corr)     .00000     72.000     25.000    
+personal scanner 4.NumberBusy               .80497     .05757     .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .80497     .05757     .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99712     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99712     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .98313     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .98313     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .92256     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .92256     (Insuf)    .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.7195     .10971     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .92989     .02743     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  2.3765     .86392     .00000     12.000     3.0000    
+Personal check Queue 1.Queue.NumberInQueue  1.9090     .85248     .00000     12.000     2.0000    
+Personal check Queue 3.Queue.NumberInQueue  2.1455     .85931     .00000     12.000     2.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.6545     .84865     .00000     11.000     1.0000    
+ID and Boarding pass check.Queue.NumberInQ  12.208     (Corr)     .00000     62.000     9.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7170.0    
+Passenger.NumberOut                         7145.0    
+personal scanner 4.NumberSeized             1555.0    
+personal scanner 4.ScheduledUtilization     .80497    
+personal scanner 2.NumberSeized             1924.0    
+personal scanner 2.ScheduledUtilization     .99712    
+personal scanner 3.NumberSeized             1895.0    
+personal scanner 3.ScheduledUtilization     .98313    
+personal scanner 1.NumberSeized             1775.0    
+personal scanner 1.ScheduledUtilization     .92256    
+Servers.NumberSeized                        7161.0    
+Servers.ScheduledUtilization                .92989    
+System.NumberOut                            7145.0    
+
+Beginning replication 4 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 4 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.5037     .01975     .51311     7.3337       7034    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7034    
+Passenger.WaitTime                          3.4435     (Corr)     .00000     12.731       7034    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7034    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7034    
+Passenger.TotalTime                         4.9473     (Corr)     .58773     14.479       7034    
+Personal check Queue 2.Queue.WaitingTime    1.5234     .30697     .00000     6.5452       1914    
+Personal check Queue 1.Queue.WaitingTime    1.2786     .32113     .00000     6.2480       1742    
+Personal check Queue 3.Queue.WaitingTime    1.3741     .30366     .00000     5.9504       1878    
+Personal check Queue 4.Queue.WaitingTime    1.2628     .37320     .00000     6.3244       1504    
+ID and Boarding pass check.Queue.WaitingTi  2.0779     .72667     .00000     10.438       7050    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               24.220     4.7711     .00000     72.000     25.000    
+personal scanner 4.NumberBusy               .78223     .06169     .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .78223     .06169     .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99482     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99482     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .97900     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .97900     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .91318     .02281     .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .91318     .02281     .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.6852     .09166     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .92132     .02291     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  2.0262     .41421     .00000     9.0000     2.0000    
+Personal check Queue 1.Queue.NumberInQueue  1.5478     .40925     .00000     8.0000     2.0000    
+Personal check Queue 3.Queue.NumberInQueue  1.7932     .40908     .00000     9.0000     2.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.3190     .40629     .00000     8.0000     2.0000    
+ID and Boarding pass check.Queue.NumberInQ  10.179     3.8869     .00000     62.000     9.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7059.0    
+Passenger.NumberOut                         7034.0    
+personal scanner 4.NumberSeized             1504.0    
+personal scanner 4.ScheduledUtilization     .78223    
+personal scanner 2.NumberSeized             1914.0    
+personal scanner 2.ScheduledUtilization     .99482    
+personal scanner 3.NumberSeized             1878.0    
+personal scanner 3.ScheduledUtilization     .97900    
+personal scanner 1.NumberSeized             1742.0    
+personal scanner 1.ScheduledUtilization     .91318    
+Servers.NumberSeized                        7050.0    
+Servers.ScheduledUtilization                .92132    
+System.NumberOut                            7034.0    
+
+Beginning replication 5 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 5 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.4965     .02274     .51274     7.1201       7227    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7227    
+Passenger.WaitTime                          4.9610     (Corr)     .00000     18.675       7227    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7227    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7227    
+Passenger.TotalTime                         6.4575     (Corr)     .69317     22.129       7227    
+Personal check Queue 2.Queue.WaitingTime    2.4410     (Corr)     .00000     9.8191       1913    
+Personal check Queue 1.Queue.WaitingTime    2.2077     (Corr)     .00000     10.288       1806    
+Personal check Queue 3.Queue.WaitingTime    2.2850     (Corr)     .00000     9.7478       1894    
+Personal check Queue 4.Queue.WaitingTime    2.2536     (Corr)     .00000     9.4243       1618    
+ID and Boarding pass check.Queue.WaitingTi  2.6553     (Corr)     .00000     14.969       7246    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               32.442     (Corr)     .00000     104.00     21.000    
+personal scanner 4.NumberBusy               .84364     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .84364     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99635     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99635     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .98632     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .98632     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .94116     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .94116     (Insuf)    .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.7560     .07591     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .93902     .01898     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  3.2452     1.0821     .00000     13.000     3.0000    
+Personal check Queue 1.Queue.NumberInQueue  2.7701     1.0709     .00000     13.000     3.0000    
+Personal check Queue 3.Queue.NumberInQueue  3.0070     1.0621     .00000     13.000     3.0000    
+Personal check Queue 4.Queue.NumberInQueue  2.5344     1.0662     .00000     13.000     2.0000    
+ID and Boarding pass check.Queue.NumberInQ  13.361     (Corr)     .00000     90.000     2.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7248.0    
+Passenger.NumberOut                         7227.0    
+personal scanner 4.NumberSeized             1618.0    
+personal scanner 4.ScheduledUtilization     .84364    
+personal scanner 2.NumberSeized             1913.0    
+personal scanner 2.ScheduledUtilization     .99635    
+personal scanner 3.NumberSeized             1894.0    
+personal scanner 3.ScheduledUtilization     .98632    
+personal scanner 1.NumberSeized             1806.0    
+personal scanner 1.ScheduledUtilization     .94116    
+Servers.NumberSeized                        7246.0    
+Servers.ScheduledUtilization                .93902    
+System.NumberOut                            7227.0    
+
+Beginning replication 6 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 6 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.4894     .02285     .50340     8.2166       7111    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7111    
+Passenger.WaitTime                          3.5452     (Corr)     .00000     11.809       7111    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7111    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7111    
+Passenger.TotalTime                         5.0347     (Corr)     .62669     14.925       7111    
+Personal check Queue 2.Queue.WaitingTime    1.9615     (Corr)     .00000     7.6136       1909    
+Personal check Queue 1.Queue.WaitingTime    1.7273     (Corr)     .00000     7.7324       1770    
+Personal check Queue 3.Queue.WaitingTime    1.8162     (Corr)     .00000     7.8765       1876    
+Personal check Queue 4.Queue.WaitingTime    1.7479     (Corr)     .00000     7.6823       1560    
+ID and Boarding pass check.Queue.WaitingTi  1.7349     (Corr)     .00000     8.7911       7136    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               24.985     (Corr)     .00000     70.000     38.000    
+personal scanner 4.NumberBusy               .81714     (Corr)     .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .81714     (Corr)     .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99605     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99605     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .97528     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .97528     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .92377     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .92377     (Insuf)    .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.6557     .11211     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .91393     .02803     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  2.6059     (Corr)     .00000     11.000     4.0000    
+Personal check Queue 1.Queue.NumberInQueue  2.1278     (Corr)     .00000     11.000     4.0000    
+Personal check Queue 3.Queue.NumberInQueue  2.3712     (Corr)     .00000     11.000     4.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.8991     (Corr)     .00000     11.000     5.0000    
+ID and Boarding pass check.Queue.NumberInQ  8.6133     3.1824     .00000     45.000     13.000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7149.0    
+Passenger.NumberOut                         7111.0    
+personal scanner 4.NumberSeized             1560.0    
+personal scanner 4.ScheduledUtilization     .81714    
+personal scanner 2.NumberSeized             1909.0    
+personal scanner 2.ScheduledUtilization     .99605    
+personal scanner 3.NumberSeized             1876.0    
+personal scanner 3.ScheduledUtilization     .97528    
+personal scanner 1.NumberSeized             1770.0    
+personal scanner 1.ScheduledUtilization     .92377    
+Servers.NumberSeized                        7136.0    
+Servers.ScheduledUtilization                .91393    
+System.NumberOut                            7111.0    
+
+Beginning replication 7 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 7 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.5095     .02510     .51140     7.8067       7091    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7091    
+Passenger.WaitTime                          4.0436     (Corr)     .00000     12.925       7091    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7091    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7091    
+Passenger.TotalTime                         5.5531     (Corr)     .60290     15.782       7091    
+Personal check Queue 2.Queue.WaitingTime    1.5004     .35812     .00000     6.6456       1910    
+Personal check Queue 1.Queue.WaitingTime    1.2385     .37430     .00000     6.2731       1776    
+Personal check Queue 3.Queue.WaitingTime    1.3389     .35507     .00000     7.0151       1884    
+Personal check Queue 4.Queue.WaitingTime    1.2099     .41244     .00000     5.8404       1525    
+ID and Boarding pass check.Queue.WaitingTi  2.7119     (Corr)     .00000     11.077       7101    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               27.372     (Corr)     .00000     68.000     20.000    
+personal scanner 4.NumberBusy               .79503     .05025     .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .79503     .05025     .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99685     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99685     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .97886     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .97886     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .91827     .02177     .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .91827     .02177     .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.7534     (Corr)     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .93837     (Corr)     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  1.9904     .49718     .00000     9.0000     1.0000    
+Personal check Queue 1.Queue.NumberInQueue  1.5275     .48555     .00000     9.0000     .00000    
+Personal check Queue 3.Queue.NumberInQueue  1.7520     .49023     .00000     9.0000     1.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.2813     .49220     .00000     8.0000     .00000    
+ID and Boarding pass check.Queue.NumberInQ  13.378     (Corr)     .00000     57.000     10.000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7111.0    
+Passenger.NumberOut                         7091.0    
+personal scanner 4.NumberSeized             1525.0    
+personal scanner 4.ScheduledUtilization     .79503    
+personal scanner 2.NumberSeized             1910.0    
+personal scanner 2.ScheduledUtilization     .99685    
+personal scanner 3.NumberSeized             1884.0    
+personal scanner 3.ScheduledUtilization     .97886    
+personal scanner 1.NumberSeized             1776.0    
+personal scanner 1.ScheduledUtilization     .91827    
+Servers.NumberSeized                        7101.0    
+Servers.ScheduledUtilization                .93837    
+System.NumberOut                            7091.0    
+
+Beginning replication 8 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 8 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.4858     .01755     .51035     9.4145       7091    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7091    
+Passenger.WaitTime                          2.7861     .55854     .00000     10.564       7091    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7091    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7091    
+Passenger.TotalTime                         4.2719     .56109     .58255     13.249       7091    
+Personal check Queue 2.Queue.WaitingTime    1.6183     .30884     .00000     6.2530       1902    
+Personal check Queue 1.Queue.WaitingTime    1.3484     .31310     .00000     5.5120       1777    
+Personal check Queue 3.Queue.WaitingTime    1.4645     .30847     .00000     5.9127       1878    
+Personal check Queue 4.Queue.WaitingTime    1.3259     .34123     .00000     5.7236       1538    
+ID and Boarding pass check.Queue.WaitingTi  1.3456     .41158     .00000     8.4030       7101    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               21.145     3.0538     .00000     58.000     41.000    
+personal scanner 4.NumberBusy               .80704     .06439     .00000     1.0000     1.0000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .80704     .06439     .00000     1.0000     1.0000    
+personal scanner 2.NumberBusy               .99777     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99777     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .98233     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .98233     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .92489     .02522     .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .92489     .02522     .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.6114     .10018     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .90286     .02505     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  2.1379     .50268     .00000     8.0000     1.0000    
+Personal check Queue 1.Queue.NumberInQueue  1.6640     .48707     .00000     8.0000     .00000    
+Personal check Queue 3.Queue.NumberInQueue  1.9101     .49222     .00000     8.0000     1.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.4162     .49052     .00000     7.0000     .00000    
+ID and Boarding pass check.Queue.NumberInQ  6.6940     1.7830     .00000     44.000     31.000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7132.0    
+Passenger.NumberOut                         7091.0    
+personal scanner 4.NumberSeized             1538.0    
+personal scanner 4.ScheduledUtilization     .80704    
+personal scanner 2.NumberSeized             1902.0    
+personal scanner 2.ScheduledUtilization     .99777    
+personal scanner 3.NumberSeized             1878.0    
+personal scanner 3.ScheduledUtilization     .98233    
+personal scanner 1.NumberSeized             1777.0    
+personal scanner 1.ScheduledUtilization     .92489    
+Servers.NumberSeized                        7101.0    
+Servers.ScheduledUtilization                .90286    
+System.NumberOut                            7091.0    
+
+Beginning replication 9 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 9 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.4968     .01517     .51526     7.5839       7208    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7208    
+Passenger.WaitTime                          3.8046     (Corr)     .00000     13.971       7208    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7208    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7208    
+Passenger.TotalTime                         5.3014     (Corr)     .56001     15.811       7208    
+Personal check Queue 2.Queue.WaitingTime    1.6436     .33719     .00000     6.0744       1926    
+Personal check Queue 1.Queue.WaitingTime    1.3798     .33989     .00000     5.9204       1792    
+Personal check Queue 3.Queue.WaitingTime    1.4860     .33342     .00000     5.9577       1903    
+Personal check Queue 4.Queue.WaitingTime    1.3394     .34899     .00000     5.2878       1589    
+ID and Boarding pass check.Queue.WaitingTi  2.3340     (Corr)     .00000     9.9481       7216    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               26.563     (Corr)     .00000     78.000     23.000    
+personal scanner 4.NumberBusy               .82658     .05453     .00000     1.0000     .00000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .82658     .05453     .00000     1.0000     .00000    
+personal scanner 2.NumberBusy               .99843     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99843     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .98542     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .98542     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .93122     (Insuf)    .00000     1.0000     .00000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .93122     (Insuf)    .00000     1.0000     .00000    
+Servers.NumberBusy                          3.7578     .08690     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .93946     .02172     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  2.1989     .51828     .00000     9.0000     1.0000    
+Personal check Queue 1.Queue.NumberInQueue  1.7171     .51708     .00000     8.0000     .00000    
+Personal check Queue 3.Queue.NumberInQueue  1.9639     .51384     .00000     9.0000     1.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.4780     .50917     .00000     8.0000     .00000    
+ID and Boarding pass check.Queue.NumberInQ  11.706     (Corr)     .00000     54.000     15.000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7231.0    
+Passenger.NumberOut                         7208.0    
+personal scanner 4.NumberSeized             1589.0    
+personal scanner 4.ScheduledUtilization     .82658    
+personal scanner 2.NumberSeized             1926.0    
+personal scanner 2.ScheduledUtilization     .99843    
+personal scanner 3.NumberSeized             1903.0    
+personal scanner 3.ScheduledUtilization     .98542    
+personal scanner 1.NumberSeized             1792.0    
+personal scanner 1.ScheduledUtilization     .93122    
+Servers.NumberSeized                        7216.0    
+Servers.ScheduledUtilization                .93946    
+System.NumberOut                            7208.0    
+
+Beginning replication 10 of 10
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                  Summary for Replication 10 of 10
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+Replication ended at time      : 1440.0 Minutes 
+Base Time Units: Minutes
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Passenger.VATime                            1.5002     .01756     .51411     7.1016       7171    
+Passenger.NVATime                           .00000     .00000     .00000     .00000       7171    
+Passenger.WaitTime                          3.6101     (Corr)     .00000     14.720       7171    
+Passenger.TranTime                          .00000     .00000     .00000     .00000       7171    
+Passenger.OtherTime                         .00000     .00000     .00000     .00000       7171    
+Passenger.TotalTime                         5.1103     (Corr)     .58499     19.129       7171    
+Personal check Queue 2.Queue.WaitingTime    1.8959     (Corr)     .00000     8.5396       1914    
+Personal check Queue 1.Queue.WaitingTime    1.6353     (Corr)     .00000     8.7624       1793    
+Personal check Queue 3.Queue.WaitingTime    1.7375     .53338     .00000     9.3968       1892    
+Personal check Queue 4.Queue.WaitingTime    1.6444     (Corr)     .00000     8.1132       1575    
+ID and Boarding pass check.Queue.WaitingTi  1.8755     (Corr)     .00000     11.386       7180    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Passenger.WIP                               25.470     (Corr)     .00000     87.000     18.000    
+personal scanner 4.NumberBusy               .82401     .04788     .00000     1.0000     .00000    
+personal scanner 4.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 4.Utilization              .82401     .04788     .00000     1.0000     .00000    
+personal scanner 2.NumberBusy               .99632     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 2.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 2.Utilization              .99632     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberBusy               .98110     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 3.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 3.Utilization              .98110     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberBusy               .92759     (Insuf)    .00000     1.0000     1.0000    
+personal scanner 1.NumberScheduled          1.0000     (Insuf)    1.0000     1.0000     1.0000    
+personal scanner 1.Utilization              .92759     (Insuf)    .00000     1.0000     1.0000    
+Servers.NumberBusy                          3.7481     .08401     .00000     4.0000     4.0000    
+Servers.NumberScheduled                     4.0000     (Insuf)    4.0000     4.0000     4.0000    
+Servers.Utilization                         .93704     .02100     .00000     1.0000     1.0000    
+Personal check Queue 2.Queue.NumberInQueue  2.5203     (Corr)     .00000     12.000     1.0000    
+Personal check Queue 1.Queue.NumberInQueue  2.0362     (Corr)     .00000     12.000     .00000    
+Personal check Queue 3.Queue.NumberInQueue  2.2829     (Corr)     .00000     12.000     1.0000    
+Personal check Queue 4.Queue.NumberInQueue  1.7985     (Corr)     .00000     11.000     .00000    
+ID and Boarding pass check.Queue.NumberInQ  9.3552     3.6312     .00000     77.000     9.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Passenger.NumberIn                          7189.0    
+Passenger.NumberOut                         7171.0    
+personal scanner 4.NumberSeized             1575.0    
+personal scanner 4.ScheduledUtilization     .82401    
+personal scanner 2.NumberSeized             1914.0    
+personal scanner 2.ScheduledUtilization     .99632    
+personal scanner 3.NumberSeized             1892.0    
+personal scanner 3.ScheduledUtilization     .98110    
+personal scanner 1.NumberSeized             1793.0    
+personal scanner 1.ScheduledUtilization     .92759    
+Servers.NumberSeized                        7180.0    
+Servers.ScheduledUtilization                .93704    
+System.NumberOut                            7171.0    
+
+
+                                      ARENA Simulation Results
+                               suiwenyu@hotmail.com - License: STUDENT
+
+                                 Output Summary for 10 Replications
+
+Project: Unnamed Project                                             Run execution date : 6/27/2022
+Analyst: suiwenyu@hotmail.com                                        Model revision date: 6/27/2022
+
+
+                                             OUTPUTS
+
+Identifier                                 Average    Half-width Minimum    Maximum # Replications
+___________________________________________________________________________________________________
+
+Passenger.NumberIn                          7164.9     39.751     7059.0     7248.0     10
+Passenger.NumberOut                         7133.6     41.420     7034.0     7227.0     10
+personal scanner 4.NumberSeized             1560.5     23.262     1504.0     1618.0     10
+personal scanner 4.ScheduledUtilization     .81387     .01238     .78223     .84364     10
+personal scanner 2.NumberSeized             1914.0     4.9557     1902.0     1926.0     10
+personal scanner 2.ScheduledUtilization     .99671      6.9956E-4 .99482     .99843     10
+personal scanner 3.NumberSeized             1887.6     6.9368     1876.0     1903.0     10
+personal scanner 3.ScheduledUtilization     .98159     .00270     .97528     .98632     10
+personal scanner 1.NumberSeized             1775.2     13.355     1742.0     1806.0     10
+personal scanner 1.ScheduledUtilization     .92542     .00533     .91318     .94116     10
+Servers.NumberSeized                        7149.9     41.391     7050.0     7246.0     10
+Servers.ScheduledUtilization                .93023     .01012     .90286     .95104     10
+System.NumberOut                            7133.6     41.420     7034.0     7227.0     10
+
+Simulation run time: 1.68 minutes.
+Simulation run complete.

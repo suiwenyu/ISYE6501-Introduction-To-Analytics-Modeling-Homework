@@ -1,0 +1,365 @@
+---
+title: "Homework week 4"
+output:
+  html_document: default
+date: '2022-06-11'
+---
+
+| **Question 9.1**
+| **Answer:**
+| 
+| First, load the data and perform PCA. We need to exclude the response variable (column 16), the binary variable (column 2) and scale the data before implementing PCA.
+| Then we display the % of variance explained by each component in a graph.
+
+```{r}
+    rm(list = ls())
+    set.seed(19)
+    #read data
+    data <- read.table("C:\\Data\\week 4 data-summer\\data 9.1\\uscrime.txt", 
+                       stringsAsFactors = FALSE, header = TRUE)
+    #performing PCA, excluding unnecessary variables
+    crime_pca <- prcomp(data[, c(-2, -16)], scale = TRUE, center = TRUE)
+    
+    # dsiplay the percentage of variance explained by each principle component
+    variances <- (crime_pca$sdev)^2
+    tot_var <- sum((crime_pca$sdev)^2)
+    plot(variances/tot_var, type = "o", main = "% of variance explained")
+```
+
+| From the line chart above we can see that the first 6 principle components explain most the variances in the data set. Therefore, we will use the first 6 principle components in our model.
+
+```{r}
+    # Load the first 6 principle components and the response variable (Crime)
+    # into one data frame 
+    crime_pca_df <- cbind(crime_pca$x[,1:6], data["Crime"])
+    head(crime_pca_df)
+```
+
+| Next, we will perform a linear regression using the data frame generated in last step.
+
+```{r}
+    model <- lm(Crime~PC1+PC2+PC3+PC4+PC5+PC6, data = crime_pca_df)
+    summary(model)
+```
+
+| Then we need to find the coefficients for each original variable using the results above from both PCA and linear regression model.
+
+```{r}
+    #Find coefficients for orginal variables(scaled) by multiplying 
+    #coeffients of principle components with eighenvectors 
+    beta_vec <- model$coefficients[2:7]
+    beta_intercept <- model$coefficients[1]
+    
+    alpha_vec <- c((crime_pca$rotation[,1:6] %*% beta_vec)[,1])
+    
+    #display coefficients for original factors, without removing effect of scaling
+    as.data.frame(alpha_vec)
+```
+
+Considering that the data has been scaled before applying PCA to it, we need to execute following steps to remove the effect of scaling:
+
+```{r}
+    #Calculate the means and standard deviations of the variables in the orginal 
+    #data, excluding response variable (Crime) and binary variable (So)
+    means <- colMeans(data[,c(-2,-16)])
+    stdev <- apply(data[,c(-2,-16)],2,sd)
+    
+    #remove effect of scaling
+    origin_vec <- alpha_vec/stdev
+    as.data.frame(origin_vec)
+    origin_intercept <- beta_intercept - sum(alpha_vec * means / stdev)
+    
+    #display coefficients for original factors, removing effect of scaling
+    as.data.frame(origin_intercept)
+```
+
+| The results above shows the coefficients and intercepts for the original factors. Next, we are going to using them to estimate the crime rate in each row of the original data set (without binary variable, column 2)
+| Then we are going to compare our estimated result with real results, and calculate adjusted R squared.
+
+```{r}
+    input <- as.matrix(data[, c(-2,-16)])
+    estimate <- input %*% origin_vec + origin_intercept
+
+    RSS <- sum((data[,16]-estimate)^2)
+    TSS <- sum((data[,16]-mean(data[,16]))^2)
+    
+    R2 <- 1 - RSS/TSS
+    R2
+    Adj_R2 = 1- (1-R2)*nrow(data)/(nrow(data)-6-1)
+    Adj_R2
+```
+
+|  As the last step of this question, we are going to make a prediction with the data of the new city.
+
+```{r}
+    input <- as.matrix(data.frame("M" = 14.0,
+                                  
+                                  "Ed" = 10.0,
+                                  "Po1" = 12.0,
+                                  "Po2" = 15.5,
+                                  "LF" = 0.64,
+                                  "M.F" = 94.0,
+                                  "Pop" = 150,
+                                  "NW" = 1.1,
+                                  "U1" = 0.12,
+                                  "U2" = 3.6,
+                                  "Wealth" = 3200,
+                                   "Ineq" = 20.1,
+                                   "Prob" = 0.04,
+                                  "Time" = 39.0))
+    prediction <- input %*% origin_vec + origin_intercept
+    prediction
+```
+
+| 
+| 
+| **Question 10.1**
+| **Answer:**
+| 
+| First, we read the data and run a regression tree model by calling tree() function. Since later we are going to use cross validation to prune the tree model, we need to split the data into 2 parts, 70% for training and cross validation, the rest 30% for testing.
+| We are going to show the nodes, and branching criteria in the graph below.
+
+```{r}
+    library(tree)
+    rm(list = ls())
+    set.seed(19)
+    #read data
+    data <- read.table("C:\\Data\\week 4 data-summer\\data 9.1\\uscrime.txt", 
+                       stringsAsFactors = FALSE, header = TRUE)
+    #spliting data into training(cross validation) and testing
+    training_index <- sample(1:nrow(data), size = round(nrow(data)*0.7))
+    training <- data[training_index,]
+    testing <- data[-training_index,]
+
+    #run the regression tree model with training dataset
+    tree <- tree(Crime~., data = training)
+    tree
+    summary(tree)
+    plot(tree)
+    text(tree, pretty = 0)
+   
+```
+
+| Next, we need to prune the tree and choose the best number of nodes. Here we use cv.tree() to perform the pruning and cross validation process at the same time. We will use deviance to measure the quality of each model.
+| We will do a 3-fold cross validation and show the deviance of the model under each number of nodes in a line chart.
+
+```{r}
+    set.seed(10)
+    #prune the tree & cross validation
+    cv_tree <- cv.tree(tree,K=3)
+    plot(cv_tree$size, cv_tree$dev, type = "o")
+```
+
+| From the chart above, we can see that the model has lowest deviation when there are 5 nodes in total. Therefore, we will choose have 5 nodes in our tree. We will show this model by calling prune.tree() function with parameter best = 5.
+| The structure of the tree will be displayed in a graph.
+
+```{r}
+    tree_pruned <- prune.tree(tree, best = 5)
+    tree_pruned
+    summary(tree_pruned)
+    plot(tree_pruned)
+    text(tree_pruned)
+    
+    
+    # Calculate R squared
+    prediction <- predict(tree_pruned, testing[,1:15])
+    RSS <- sum((testing[,16] - prediction)^2)
+    TSS <- sum((testing[,16] - mean(testing[,16]))^2)
+    R2 <- 1- RSS/TSS
+    R2
+    
+```
+
+| From the charts and tables in previous steps, we can have following findings:
+| 1. "Po1" is probably the most important factor in the regression tree model. It is the node at the top of the tree. When Po1 \< 10.75, the overall estimation of crime rate is much lower comparing to when Po1\>=10.75.
+| 2. Comparing to the deviation we see in cross validation (5736093), the deviation of the model shown in the last step (1712000) is much lower. That means our model may have a issue of overfitting to training data. The R squared value shown in the testing result also implies this issue. It is as low as only 4.58%.
+
+| 
+| 
+| In the next part of this questions. We are go to run a random forest model using the same training / testing data. To select the best model, we are going to change the values of mytry and nodesize parameters. We are going to select the combination of these two parameters that generates the best R squared value.
+| In the following code, we are going to try all the combinations of mytry between 1 to14, and nodesize between 2 and 10.
+
+```{r}
+    library(randomForest)
+    
+    set.seed(19)
+  
+    mtry_vec <- c()
+    nodesize_vec <- c()
+    R2_vec <- c()
+    
+    #try all possible combinations of mytry and nodesize
+    for (m in 1:14){
+      for (n in 2:10){
+        rf <- randomForest(Crime~., data = training, importance = TRUE, mtry = m, 
+                           nodeszie = n )
+        
+        #calculate R squared value
+        RSS <- sum((training[,16] - rf$predicted)^2)
+        TSS <- sum((training[,16] - mean(training[,16]))^2)
+        R2 <- 1- RSS/TSS
+        
+        mtry_vec <- append(mtry_vec,m)
+        nodesize_vec <- append(nodesize_vec, n)
+        R2_vec = append(R2_vec, R2)
+      }
+    }
+    
+    training_result_df <- data.frame("mytry" = mtry_vec,
+                            "node size" = nodesize_vec,
+                            "R2" = R2_vec)
+    #display part of the training results
+    head(training_result_df)
+    
+```
+
+| After reviewing all the results, we will find that the combination mytry=3 and nodesize=6 generates the best R squared value. (41.05%) using training data.
+| Therefore, we will choose mytry = 3 and nodesize = 6, and display the model in more details, running with testing data.
+
+```{r}
+     set.seed(19)
+     rf <- randomForest(Crime~., data = testing, importance = TRUE, mtry = 3, 
+                           nodeszie = 6 )
+     rf
+     rf$importance
+     
+     #Calculate R squared using testing data
+     RSS <- sum((testing[,16] - rf$predicted)^2)
+     TSS <- sum((testing[,16] - mean(testing[,16]))^2)
+     R2 <- 1- RSS/TSS
+     R2
+```
+
+| Reviewing the table above and compare the random forest tree model with the regression tree mode, we can have following findings:
+| 1. The random forest model has better quality of fit than regression tree model since it has a higher R squared value running on testing data (12.47%)
+| 2. In the random forest model, factors "Po1" and "Po2" are two most important factors, since they have the highest value of "%IncMSE"
+
+| 
+| 
+| **Question 10.2**
+| **Answer:**
+| 
+| I am recently applying for a new credit card. I think a logistic model can be used to predict the probability of whether my application will be approved.
+| The predictors my include: my gross annual income, monthly housing rent payment, credit score, years of longest credit history, etc.
+
+| **Question 10.3**
+| **Question 10.3.1**
+| **Answer:**
+| 
+| First, we need to read the data. Since the last column (response variable) has values of 1 and 2, we need to convert them to 0 and 1.
+| To measure the quality of fit, we also need to split the data into training and testing. Here we will use 70% of data for training and the rest 30% for testing.
+
+```{r}
+
+    rm(list = ls())
+    set.seed(19)
+    #read data
+    data <- read.table("C:\\Data\\week 4 data-summer\\data 10.3\\germancredit.txt",
+                       stringsAsFactors = FALSE, header = FALSE)
+    
+    #convert values in last column to 0 and 1
+    data$V21[data$V21==1] <- 0
+    data$V21[data$V21==2] <- 1
+    head(data)
+    
+    #split data into training and testing
+    training_index <- sample(1:nrow(data), size = round(nrow(data)*0.7))
+    training <- data[training_index,]
+    testing <- data[-training_index,]
+
+```
+
+| Next, we will run the logistic regression model using all the variables and see the result. We will test the model use testing data set and compare the prediction results and the real response factor in a confusion matrix.
+| Right now, we don't have a probably threshold for the prediction. Therefore we will just round the predicted probabilities to zero and one.
+
+```{r}
+    model <- glm(V21~., data = training, family=binomial(link="logit"))
+    summary(model)
+    
+    #test the model use testing data
+    predicttion <- predict(model, newdata = testing, type = "response")
+    table(testing[,21], round(predicttion))
+
+    
+```
+
+| From the results above, the model correctly predicted 227 data points out of 300. But we can see from the summary table of the model that many predictors do not have a significant coefficients.
+| Therefore, we will run the model again after excluding all the predictors with p value bigger than 0.01.
+| For each column in original data, we will only keep the most significant coefficient, since the coefficients of the same column may be correlated with each other. Here's the results:
+
+```{r}
+    #Manually add significtant predictors to the training / testing data sets
+    add_coefficients <- function(dataset){
+    
+      dataset$V1A14[dataset$V1 == "A14"] <- 1
+      dataset$V1A14[dataset$V1 != "A14"] <- 0
+      
+      dataset$V3A34[dataset$V3 == "A34"] <- 1
+      dataset$V3A34[dataset$V3 != "A34"] <- 0
+       
+      dataset$V4A41[dataset$V4 == "A41"] <- 1
+      dataset$V4A41[dataset$V4 != "A41"] <- 0
+      
+      dataset$V6A65[dataset$V6 == "A65"] <- 1
+      dataset$V6A65[dataset$V6 != "A65"] <- 0
+      
+      return (dataset)
+    }
+    
+    training_2 <- add_coefficients(training)
+    testing_2 <- add_coefficients(testing)
+    
+    #Rerun the model after excluding insignificant coefficients
+    model_2 <- glm(V21~
+                   V1A14+V3A34+V4A41+V5+V6A65+V8, 
+                 data = training_2, family=binomial(link="logit"))
+    summary(model_2)
+    
+    #test the model use testing data
+    predicttion <- predict(model_2, newdata = testing_2, type = "response")
+    table(testing_2[,21], round(predicttion))
+```
+
+| From the results above, even thought the prediction accuracy didn't improve (225 out of 300), there are no longer insignificant coefficients. That means we have reduced the likely hood of overfitting problem. Therefore, we are going to choose the second model.
+
+| **Question 10.3.2**
+| **Answer:**
+| 
+| In our prediction above, 0 stands for good and 1 stands for bad.
+| Assume that the cost of incorrectly identifying a bad customer as good is 5. and the cost of incorrectly classifying a good customer as bad is 1. If we do not change the probability threshold, the total cost in the last scenario equals 52 \* 5 + 23 \* 1 = 283
+| To find the best probability threshold and minimize the total cost, we will try every possible probability threshold starting from 10% to 70%. If the probability prediction result for one customer is bigger or equal to the threshold, we will identify this customer as "bad" (1). Each time, we will raise the threshold by 1% and calculate the total cost. The probability threshold that minimize the total cost will be our answer.
+| 
+| Let's run second model on the full data set to make the prediction.
+
+```{r}
+    #add necessary predictors to orginal dataset and run the model
+    data_2 <- add_coefficients(data)
+    pred_prob <- predict(model_2, newdata = data_2, type = "response")
+    
+    #try different threshold
+    p = 0.1
+    threshold <- c()
+    cost <- c()
+    while (p<=0.7){
+        prediction = pred_prob
+        for (i in 1:length(prediction)){
+          if (prediction[i] >= p){
+            prediction[i] <- 1
+          }
+          else {prediction[i] <- 0}
+        }
+        
+        con_mat <- table(data_2[,21], prediction)
+        total_cost <- con_mat[1,2] * 1 + con_mat[2,1] * 5
+        
+        threshold <- append(threshold, p)
+        cost <- append(cost, total_cost)
+        p = p + 0.01
+    }
+
+    results <- data.frame("Threshold" = threshold, "Total Cost" = cost)
+    plot(results)
+    results
+```
+
+| From the results above, we can easily observe that the total cost will be minimized (equals 519) when the threshold is 17%. Therefore, we would choose the threshold to be 17%
